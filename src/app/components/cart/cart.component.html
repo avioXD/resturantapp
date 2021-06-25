@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <h3 class="text-center">Cart List</h3>
+    <hr>
+    <div class="container box d-flex justify-content-center" *ngFor="let item of items; let i =index">
+        <div class="container m-auto">
+            <p class="my-auto ">{{item.name}}</p>
+        </div>
+        <p class="text-center my-auto mx-3">${{item.price}}</p>
+        <div class="m-auto">
+            <button (click)="removeCart(i)" class="btn btn-primary">Remove</button>
+        </div>
+    </div>
+    <p> Food Total: $ {{nowBill?.foodtotal}}</p>
+    <button (click)="generateBill=!generateBill " class="btn btn-primary">Get Bill</button>
+    <hr>
+    <div *ngIf="generateBill && nowBill.foodtotal">
+        <p>Add some tips</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tips" id="tips1" [(ngModel)]="this.tips" [value]="10" (change)="this.cart.setTips(10)">
+            <label class="form-check-label" for="tips1">
+             10%
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tips" id="tips2" [(ngModel)]="this.tips" [value]="20" (change)="this.cart.setTips(20)">
+            <label class="form-check-label" for="tips2">
+              20%
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tips" id="tips2" [(ngModel)]="this.tips" [value]="30" (change)="this.cart.setTips(30)">
+            <label class="form-check-label" for="tips2">
+              30%
+            </label>
+        </div>
+
+        <hr>
+        <p> Food Total: $ {{nowBill?.foodtotal}}</p>
+        <p *ngIf=" tips"> Tips {{tips}}% : ${{nowBill.tips | number : '1.2-2'}} </p>
+        <p> 18% TAX: $ {{nowBill?.tax | number : '1.2-2'}}</p>
+        <hr>
+        <div class="total d-flex">
+            <div class="m-auto">
+                <h4 class="mx-2 my-auto justify-content-center">Total ${{nowBill?.total | number : '1.2-2'}} </h4>
+            </div>
+            <div class="m-auto"><button (click)="processToPay()" class="btn btn-primary">Pay</button></div>
+        </div>
+
+    </div>
+
+</div>

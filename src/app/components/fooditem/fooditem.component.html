@@ -1,0 +1,10 @@
+<div class="container box d-flex justify-content-center">
+    <img [src]="item.img" alt="" srcset="">
+    <div class="container m-auto">
+        <h4 class="my-auto ">{{item.name}}</h4>
+    </div>
+    <h5 class="text-center my-auto mx-3">${{item.price}}</h5>
+    <div class="m-auto">
+        <button (click)="addToCart(item)" class="btn btn-primary">AddToCart</button>
+    </div>
+</div>
